@@ -1,17 +1,27 @@
 const buttons = document.querySelectorAll("button");
 const screen = document.querySelector(".screen");
 
-buttons.forEach(e=>e.addEventListener("click", showNumber))
+buttons.forEach(e=>e.addEventListener("click", handleButtonClick));
 
+window.addEventListener("keypress", handleKeyPress);
 
+function handleButtonClick(clickEvent) {
+    const input = clickEvent.target.textContent;
+    showNumber(input);
+}
+
+function handleKeyPress (keyEvent) {
+    const validInputs = Array.from(buttons).map(e=>e.textContent);
+    const input = keyEvent.key;
+    if(validInputs.includes(input)) showNumber(input);
+}
 
 let text = "";
 let operator = "";
 let display = 0;
 let operand0 = 0;
 
-function showNumber(clickEvent) {
-    const input = clickEvent.target.textContent;
+function showNumber(input) {
 
     if("+-*/=".includes(input)) {
 
@@ -34,11 +44,11 @@ function showNumber(clickEvent) {
 
     }
     else{
-        text+= clickEvent.target.textContent;
+        text+= input;
 
     }
 
-    if(input!=="=")display+= clickEvent.target.textContent;
+    if(input!=="=") display+= input;
     screen.textContent = display;
     console.log(text);
 }
