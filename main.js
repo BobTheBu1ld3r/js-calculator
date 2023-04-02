@@ -21,26 +21,10 @@ let operator = null;
 let display = "0";
 let operand0 = 0;
 let start = true;
-screen.textContent = display;
 let operand1 = null;
-let isFirstCalc = true;
-
+screen.textContent = display;
 
 function handleInput(input) {
-
-    if(input==="Backspace"){
-        if(start) {
-            operand0 = 0;
-            display = operand0;
-            text="";
-        }
-
-        else if (isNumber(display.slice(-1))) {
-            text = text.slice(0, -1);
-            display = display.slice(0, -1);
-        }
-    }
-
 
     if(isNumber(input)){
         if(start) {
@@ -93,6 +77,28 @@ function handleInput(input) {
         display= result;
         start = true;
         operator = null;
+    }
+
+    if(input==="Backspace"){
+        if(start) {
+            operand0 = 0;
+            display = operand0;
+            text="";
+        }
+
+        else if (isNumber(display.slice(-1))) {
+            text = text.slice(0, -1);
+            display = display.slice(0, -1);
+        }
+    }
+
+    if(input === "Clear"){
+        text = "";
+        operator = null;
+        display = "0";
+        operand0 = 0;
+        start = true;
+        operand1 = null;
     }
 
     screen.textContent = display;
