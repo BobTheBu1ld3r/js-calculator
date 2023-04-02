@@ -13,7 +13,7 @@ function handleButtonClick(clickEvent) {
 function handleKeyPress (keyEvent) {
     const validInputs = Array.from(buttons).map(e=>e.textContent);
     const input = keyEvent.key;
-    if(validInputs.includes(input)) handleInput(input);
+    if(validInputs.includes(input) || input==="Enter") handleInput(input);
 }
 
 let text = "";
@@ -103,7 +103,7 @@ function isOperation(input) {
 }
 
 function isEquals (input) {
-    return input==="=";
+    return input==="=" || input==="Enter"; 
 }
 
 function isNumber(input) {
