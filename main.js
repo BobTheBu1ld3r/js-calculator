@@ -57,6 +57,15 @@ function handleInput(input) {
                 start = false;
             }
         }
+        else{
+            operand1 = text;
+            const result = operate(+operand0, operator, +operand1)
+            operand0 = result;
+            operator = input;
+            text="";
+            operand1 = null;
+            display= result+operator;
+        }
     }
     
     if(isEquals(input) && !operand1){
