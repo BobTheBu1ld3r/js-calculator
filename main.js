@@ -3,7 +3,7 @@ const screen = document.querySelector(".screen");
 
 buttons.forEach(e=>e.addEventListener("click", handleButtonClick));
 
-window.addEventListener("keypress", handleKeyPress);
+window.addEventListener("keydown", handleKeyPress);
 
 function handleButtonClick(clickEvent) {
     const input = clickEvent.target.textContent;
@@ -13,7 +13,7 @@ function handleButtonClick(clickEvent) {
 function handleKeyPress (keyEvent) {
     const validInputs = Array.from(buttons).map(e=>e.textContent);
     const input = keyEvent.key;
-    if(validInputs.includes(input) || input==="Enter") handleInput(input);
+    if(validInputs.includes(input) || input==="Enter" || input==="Backspace") handleInput(input);
 }
 
 let text = "";
@@ -27,6 +27,20 @@ let isFirstCalc = true;
 
 
 function handleInput(input) {
+
+    if(input==="Backspace"){
+        if(start) {
+            operand0 = 0;
+            display = operand0;
+            text="";
+        }
+
+        else if (isNumber(display.slice(-1))) {
+            text = text.slice(0, -1);
+            display = display.slice(0, -1);
+        }
+    }
+
 
     if(isNumber(input)){
         if(start) {
@@ -68,7 +82,7 @@ function handleInput(input) {
         }
     }
     
-    if(isEquals(input) && !operand1){
+    if(isEquals(input) && !operand1 && !start){
         console.log("yes");
         operand1 = text;
         console.log(`operand0=${operand0}, operator=${operator}, operand1=${operand1}`);
