@@ -1,5 +1,5 @@
 const buttons = document.querySelectorAll("button");
-const screen = document.querySelector(".screen");
+const screenText = document.querySelector(".screen-text");
 
 buttons.forEach(e=>e.addEventListener("click", handleButtonClick));
 
@@ -22,7 +22,7 @@ let display = "0";
 let operand0 = 0;
 let start = true;
 let operand1 = null;
-screen.textContent = display;
+screenText.textContent = display;
 
 function handleInput(input) {
 
@@ -101,7 +101,7 @@ function handleInput(input) {
         operand1 = null;
     }
 
-    screen.textContent = display;
+    screenText.textContent = display;
 }
 
 
