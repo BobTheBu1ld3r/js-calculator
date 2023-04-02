@@ -48,7 +48,7 @@ body {
     background-color: var(--background-grey);
     padding: 5px 10px;
     border: 2px solid var(--screen-button-border);
-
+    text-align: right;
 }
 
 .row{
