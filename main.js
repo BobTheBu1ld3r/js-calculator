@@ -38,7 +38,7 @@ function handleInput(input) {
     }
 
     if(isOperation(input)){
-        if(!operator){
+        if(!operator && display!==Infinity){
             if(!start){
                 operand0 = text;
                 operator = input;
@@ -55,7 +55,7 @@ function handleInput(input) {
                 start = false;
             }
         }
-        else if(operand1){
+        else if(!isOperation(display.slice(-1)) && display!==Infinity){
             operand1 = text;
             const result = operate(+operand0, operator, +operand1)
             operand0 = result;
