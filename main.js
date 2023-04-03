@@ -55,7 +55,7 @@ function handleInput(input) {
                 start = false;
             }
         }
-        else{
+        else if(operand1){
             operand1 = text;
             const result = operate(+operand0, operator, +operand1)
             operand0 = result;
@@ -88,6 +88,13 @@ function handleInput(input) {
 
         else if (isNumber(display.slice(-1))) {
             text = text.slice(0, -1);
+            display = display.slice(0, -1);
+        }
+
+        else if(isOperation(display.slice(-1))){
+            text= operand0;
+            operand0 = null;
+            operator = null;
             display = display.slice(0, -1);
         }
     }
